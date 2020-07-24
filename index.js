@@ -41,8 +41,30 @@ class Airplane {
 */
 
 class Person {
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.stomach = [];
+  }
 
+  eat(edible) {
+    if (this.stomach.length < 10) {
+      this.stomach.push(edible);
+    }
+  }
+
+  poop() {
+    this.stomach = [];
+  }
+
+  toString() {
+    return `${this.name} is ${this.age}`;
+  }
 }
+
+// const personOne = new Person({name: "Jon", age: 23})
+
+// console.log(personOne.toString());
 
 /*
   TASK 2
@@ -59,8 +81,32 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
 
+  fill(gallons) {
+    return this.tank = this.tank + gallons;
+  }
+
+  drive(distance) {
+    this.odometer = this.odometer + distance
+    this.tank -= distance / this.milesPerGallon;
+  }
 }
+
+const carOne = new Car("Ford", 10)
+
+carOne.fill(50)
+carOne.drive(50)
+
+console.log(carOne);
+
+
+
 
 /*
   TASK 3
@@ -76,7 +122,21 @@ class Car {
 */
 class Lambdasian {
 
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+
+  speak() {
+    return `Hello my name is ${this.name} and I am from ${this.location}`
+  }
+
 }
+
+const personOne = new Lambdasian({name:"Jon", age: 23, location: "Connecticut"})
+
+console.log(personOne.speak());
 
 /*
   TASK 4
@@ -92,9 +152,28 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(attributes) {
+    super(attributes);
+    this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
+    this.catchPhrase = attributes.catchPhrase;
+  }
+
+  demo(subject){
+    return `Today we are learning about ${subject}'`
+  }
+
+  grade(student){
+    return
+  }
+
 
 }
+
+const instructorOne = new Instructor({name:"Mark", age: 33, location: "Texas", specialty: "Redux" , favLanguage: "JavaScript, Python, Elm etc.", catchPhrase: "Don't forget the homies"})
+
+console.log(instructorOne);
 
 /*
   TASK 5
@@ -146,11 +225,25 @@ class ProjectManager {
 ///////// END OF CHALLENGE /////////
 if (typeof exports !== 'undefined') {
   module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
-  if (Instructor) { module.exports.Instructor = Instructor }
-  if (Student) { module.exports.Student = Student }
-  if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
+  if (Airplane) {
+    module.exports.Airplane = Airplane
+  }
+  if (Person) {
+    module.exports.Person = Person
+  }
+  if (Car) {
+    module.exports.Car = Car
+  }
+  if (Lambdasian) {
+    module.exports.Lambdasian = Lambdasian
+  }
+  if (Instructor) {
+    module.exports.Instructor = Instructor
+  }
+  if (Student) {
+    module.exports.Student = Student
+  }
+  if (ProjectManager) {
+    module.exports.ProjectManager = ProjectManager
+  }
 }
